@@ -2,10 +2,14 @@
 import React, { useState, useEffect } from "react";
 import Chart from "react-apexcharts";
 function Piechart() {
+
+    const teste = (e) => {
+        alert(e)
+    }
+
     return (
         <React.Fragment>
             <div className="aaa">
-                a
                 <Chart
                     options={{
                         labels: [
@@ -13,9 +17,21 @@ function Piechart() {
                             "Tuesday",
                             "Wednesday",
                             "Thursday",
-                            "Friday",
-                            "Saturday"
+                            "Friday"
                         ],
+                        legend: {
+                            labels: {
+                                colors: [],
+                                useSeriesColors: true
+                            },
+                        },
+                        chart: {
+                            events: {
+                                dataPointSelection: (event, chartContext, config) => {
+                                    teste(config.dataPointIndex)
+                                }
+                            }
+                        },
                         theme: {
                             monochrome: {
                                 enabled: false
@@ -35,7 +51,7 @@ function Piechart() {
                     }}
                     series={[44, 55, 41, 17, 15]}
                     type="pie"
-                    width="300" />
+                    width="500" />
             </div>
         </React.Fragment>
     );
